@@ -1,0 +1,76 @@
+{% if 'administrador' in rol %}
+    {% include 'admin.html' %} 
+{% else %} 
+    {% include 'user.html' %} 
+{% endif %} 
+{% block section %}
+<div class="panel-group">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Configuracion del Sistema
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" method="POST" action="?action=configuracion_update">
+                <h4><strong>Configuración del Inicio de la Pagina</strong></h4>
+                <br>
+                {% if mensajeError == "No se puede modificar la configuración si deja campos vacíos" %}
+                    <div class="alert alert-danger" align="center">{{mensajeError}}</div>
+                {% endif %}
+                {% if mensajeError == "Por favor no elimine campos del formulario" %}
+                    <div class="alert alert-danger" align="center">{{mensajeError}}</div>
+                {% endif %}
+                {% for config in configuracion_inicial %}
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2  col-xs-offset-1" for="tit">Titulo:</label>
+                        <div class="col-sm-8 col-xs-12">
+                            <input type="text" class="form-control" id="tit" name="titulo{{config.id}}" value="{{config.titulo}}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2  col-xs-offset-1" for="desc">Descripcion:</label>
+                        <div class="col-sm-8 col-xs-12">
+                            <textarea class="form-control" id="desc" name="descripcion{{config.id}}" rows="5" required>{{config.descripcion}}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2  col-xs-offset-1" for="email">Mail Contacto:</label>
+                        <div class="col-sm-8 col-xs-12">
+                            <input type="email" class="form-control" id="email" name="mail_contacto{{config.id}}" value="{{config.mail_contacto}}" required>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="id{{config.id}}" value="{{config.id}}">
+                {% endfor %}
+                <div class="col-sm-12">
+                    <br><br>
+                    <h4><strong>Configuración General</strong></h4>
+                    <br>    
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-1   col-xs-offset-2" for="pag">Paginacion:</label>
+                    <div class="col-sm-8 col-xs-12">
+                        <input class="form-control" id="pag" type="number" name="cant_elementos_pagina" value="{{configuracion_general.cant_elementos_pagina}}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="elec" class="control-label col-sm-2 col-xs-offset-1">Habilitar sitio:</label>
+                    <div class="col-sm-2 col-xs-12">
+                        <input type="radio" name="sitio_habilitado" value="1" id="elec" {% if configuracion_general.sitio_habilitado == 1 %} checked {% endif %}> Habilitado<br>
+                        <input type="radio" name="sitio_habilitado" value="0" id="elec" {% if configuracion_general.sitio_habilitado == 0 %} checked {% endif %}> Deshabilitado
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-1 col-sm-10">
+                        <button type="submit" class="btn btn-default">Modificar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %} 
+{% block footer %}
+    {% include 'footer.html' %} 
+{% endblock %}

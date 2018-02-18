@@ -1,0 +1,167 @@
+{% if 'administrador' in rol %}
+{% include 'admin.html' %} 
+{% else %} 
+{% include 'user.html' %} 
+{% endif %} 
+{% block section %}
+<div class="panel-group">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			Modificar Paciente
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal" action="?action=paciente_update" method="POST">				
+				{% if mensajeError == "El DNI que quiere modificar ya está en uso, pruebe con otro" %}
+				<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+				{% endif %}
+				{% if mensajeError == "No se puede modificar el paciente si deja campos vacíos" %}
+				<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+				{% endif %}
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Nombre:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input type= "hidden" name="id" value="{{paciente.id}}" class="imputForm">
+						<input id="Nombre" name="nombre" type="text" class="form-control input-md" value="{{paciente.nombre}}" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Apellido:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input id="Apellido" name="apellido" type="text" class="form-control input-md" value="{{paciente.apellido}}" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Fecha de Nacimiento:</label>
+					<div class="col-sm-8 col-xs-12">	
+						<input type="date" id="fechaDeNacimiento" name="fechaDeNacimiento" class="form-control" id="inputText3" value="{{paciente.fechaDeNacimiento|date('Y-m-d')}}" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Genero:</label>
+					<div class="col-sm-2 col-xs-12">
+						{% if paciente.genero == "masculino" %}
+						<input type="radio" name="genero" value="masculino" checked> Masculino
+						<input type="radio" name="genero" value="femenino" id="inputText3"> Femenino							
+						{% else %}														
+						<input type="radio" name="genero" value="masculino"> Masculino
+						<input type="radio" name="genero" value="femenino" id="inputText3" checked> Femenino
+						{% endif %}
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Domicilio:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input type="text" name="domicilio" class="form-control" id="inputText3" value="{{paciente.domicilio}}" placeholder="Domicilio Actual" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Tipo Documento:</label>
+					<div class="col-sm-2 col-xs-12">
+						{% for item in documentos %}
+						<input type="radio"  name="tipoDocumento" value="{{item.id}}" {% if item.id == paciente.id_documento %} checked {% endif %}> {{item.nombre}}
+						{% endfor %}
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Número de Documento:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input type="number" name="numeroDocumento" class="form-control" id="inputText3" value="{{paciente.numeroDocumento}}" placeholder="Número de Documento" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Teléfono:</label>
+					<div class="col-sm-8 col-xs-12">
+						
+						<input type="number" name="telefono" class="form-control" id="inputText3" value="{{paciente.telefono}}" placeholder="Número de teléfono" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Obra Social:</label>
+					<div class="col-sm-8 col-xs-12">
+						<select class="form-control" id="sel2" name="obraSocial" required>
+							{% for item in obrasSociales %}
+							<option {% if item.id == paciente.id_obraSocial %} selected {% endif %} value="{{item.id}}">{{item.nombre}}</option> 
+							{% endfor %}
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-12">
+					<br><br>
+					<h4><strong>Datos Demograficos</strong></h4>
+					<br>    
+				</div>
+				<div class="form-group">
+					<label for="hel" class="control-label col-sm-2 col-xs-offset-1">Heladera:</label>
+					<div class="col-sm-2 col-xs-12">
+						{% if datosDemograficos.heladera == 1 %}
+						<input type="radio" name="heladera" value="1" id="hel" required="required" checked> si
+						<input type="radio" name="heladera" value="0" id="hel" required="required"> no
+						{% else %}
+						<input type="radio" name="heladera" value="1" id="hel" required="required"> si
+						<input type="radio" name="heladera" value="0" id="hel" required="required" checked> no
+						{% endif %}
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="elec" class="control-label col-sm-2 col-xs-offset-1">Electricidad:</label>
+					<div class="col-sm-2 col-xs-12">
+						{% if datosDemograficos.electricidad == 1 %}
+						<input type="radio" name="electricidad" value="1" id="elec" required="required" checked> si
+						<input type="radio" name="electricidad" value="0" id="elec" required="required"> no
+						{% else %}
+						<input type="radio" name="electricidad" value="1" id="elec" required="required"> si
+						<input type="radio" name="electricidad" value="0" id="elec" required="required" checked> no
+						{% endif %}
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="masc" class="control-label col-sm-2 col-xs-offset-1">Mascotas:</label>
+					<div class="col-sm-2 col-xs-12">
+						{% if datosDemograficos.mascota == 1 %}
+						<input type="radio" name="mascota" value="1" id="masc" required="required" checked> si
+						<input type="radio" name="mascota" value="0" id="masc" required="required"> no
+						{% else %}
+						<input type="radio" name="mascota" value="1" id="masc" required="required"> si
+						<input type="radio" name="mascota" value="0" id="masc" required="required" checked> no
+						{% endif %}
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="sel1">Tipo de Calefaccion:</label>
+					<div class="col-sm-8 col-xs-12">                        
+						<select class="form-control" id="sel1" name="calefaccion">                        			{% for item in calefacciones %}
+							<option {% if item.id == datosDemograficos.id_calefaccion %} selected {% endif %} value="{{item.id}}"> {{item.nombre}} </option> 
+							{% endfor %}                   
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="sel2">Tipo de Vivienda:</label>
+					<div class="col-sm-8 col-xs-12">
+						<select class="form-control" id="sel2" name="vivienda">
+							{% for item in viviendas %}
+							<option {% if item.id == datosDemograficos.id_vivienda %} selected {% endif %} value="{{item.id}}"> {{item.nombre}} </option> 
+							{% endfor %}
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="sel3">Tipo de agua:</label>
+					<div class="col-sm-8 col-xs-12">
+						<select class="form-control" id="sel3" name="agua">
+							{% for item in aguas %}
+							<option {% if item.id == datosDemograficos.id_agua %} selected {% endif %} value="{{item.id}}"> {{item.nombre}} </option> 
+							{% endfor %} 
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default">Enviar</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %} {% block footer %} {% include 'footer.html' %} {% endblock %}                         							

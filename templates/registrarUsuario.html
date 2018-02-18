@@ -1,0 +1,75 @@
+{% if 'administrador' in rol %}
+	{% include 'admin.html' %} 
+{% else %} 
+	{% include 'user.html' %} 
+{% endif %} 
+{% block section %}
+<div class="panel-group">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			Añadir Usuario
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal" action="?action=usuario_new" method="POST">
+
+				{% if mensajeError == "El nombre de usuario que quiere registrar ya esta en uso, pruebe con otro" %}
+				<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+				{% endif %}
+				{% if mensajeError == "El mail que quiere registrar ya esta en uso, pruebe con otro" %}
+				<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+				{% endif %}
+				{% if mensajeError == "No se puede registrar si deja campos vacíos" %}
+				<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+				{% endif %}
+				{% if mensajeError == "Por favor no elimine campos del formulario" %}
+				<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+				{% endif %}
+				<div class="form-group ">
+					<label for="inputEmail3" class="control-label col-sm-2  col-xs-offset-1">Email</label>
+					<div class="col-sm-8 col-xs-12">
+						<input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Email" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="control-label col-sm-2  col-xs-offset-1">Usuario</label>
+					<div class="col-sm-8 col-xs-12">
+						<input type="text" name="username" class="form-control" id="inputText3" placeholder="Usuario" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="control-label col-sm-2  col-xs-offset-1">Constraseña</label>
+					<div class="col-sm-8 col-xs-12">
+						<input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Nombre</label>
+					<div class="col-sm-8 col-xs-12">
+						<input id="Nombre" name="first_name" type="text" placeholder="Nombre" class="form-control input-md" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Apellido</label>
+					<div class="col-sm-8 col-xs-12">
+						<input id="Apellido" name="last_name" type="text" placeholder="Apellido" class="form-control input-md" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="sel1">Seleccionar rol/es:</label>
+					<div class="col-sm-8 col-xs-12 control-label" style="text-align:left;">
+						<input type="checkbox" name="rol[]" value="administrador"><label> Administrador</label>
+						<input type="checkbox" name="rol[]" value="pediatra"><label> Pediatra</label>
+						<input type="checkbox" name="rol[]" value="recepcionista"><label> Recepcionista</label> 
+					</div>
+				</div> 
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-xs-6">
+						<button type="submit" class="btn btn-default">Añadir</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %} {% block footer %} {% include 'footer.html' %} {% endblock %}

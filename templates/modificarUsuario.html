@@ -1,0 +1,77 @@
+{% if 'administrador' in rol %}
+	{% include 'admin.html' %} 
+{% else %} 
+	{% include 'user.html' %} 
+{% endif %} 
+{% block section %}
+<div class="col-xs-8 col-sm-offset-2">
+<div class="panel-group">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			Modificar Usuario
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal" action="?action=usuario_update" method="POST">
+				{% if mensajeError == "El nombre de usuario que quiere modificar ya existe, pruebe con otro" %}
+					<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+				{% endif %}
+				{% if mensajeError == "El email que quiere modificar ya existe, pruebe con otro" %}
+					<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+				{% endif %}
+				{% if mensajeError == "No se puede modificar el usuario si deja campos vacíos" %}
+					<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+				{% endif %}
+				{% if mensajeError == "Por favor no elimine campos del formulario" %}
+					<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+				{% endif %}
+				<div class="form-group">
+					<label for="inputEmail3" class="control-label col-sm-2  col-xs-offset-1">Email:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input type="email" name="email" class="form-control" id="inputEmail3" value="{{usuario.email}}" required="required">
+						<input type="hidden" name="id" value="{{usuario.id}}">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="control-label col-sm-2  col-xs-offset-1">Usuario:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input type="text" name="usuario" class="form-control" id="inputText3" value="{{usuario.username}}" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="control-label col-sm-2  col-xs-offset-1">Constraseña:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input type="password" name="clave" class="form-control" id="inputPassword3" value="{{usuario.password}}" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Nombre:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input id="Nombre" name="nombre" type="text" class="form-control input-md" value="{{usuario.first_name}}" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Apellido:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input id="Apellido" name="apellido" type="text" class="form-control input-md" value="{{usuario.last_name}}" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Rol/es:</label>
+					<div class="col-sm-8 col-xs-12 control-label" style="text-align:left;">
+						<input type="checkbox" name="rol[]" value="administrador" {% if 1 in roles %} checked {% endif %}><label> Administrador</label>
+						<input type="checkbox" name="rol[]" value="pediatra" {% if 2 in roles %} checked {% endif %}><label> Pediatra</label>
+						<input type="checkbox" name="rol[]" value="recepcionista" {% if 3 in roles %} checked {% endif %}><label> Recepcionista</label>
+						
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-xs-6">
+						<button type="submit" class="btn btn-default">Enviar</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+{% endblock %} {% block footer %} {% include 'footer.html' %} {% endblock %}

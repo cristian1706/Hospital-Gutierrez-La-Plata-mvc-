@@ -1,0 +1,66 @@
+<?php
+	//CONTROLLERS
+	require_once('controller/LoginController.php');
+	require_once('controller/ModificarUsuarioController.php');
+	require_once('controller/ListarUsuarioController.php');
+	require_once('controller/ListarUsuarioBusquedaController.php');
+	require_once('controller/RegistrarUsuarioController.php');
+	require_once('controller/BorrarUsuarioController.php');
+	require_once('controller/RegistrarPacienteController.php');
+	require_once('controller/VerPacienteController.php');
+	require_once('controller/PerfilController.php');	
+	require_once('controller/ModificarPacienteController.php');
+	require_once('controller/BorrarPacienteController.php');
+	require_once('controller/ListarPacienteController.php');
+	require_once('controller/ListarPacienteBusquedaController.php');
+	require_once('controller/ConfiguracionAdminController.php');
+	require_once('controller/DatosDemograficosController.php');
+	require_once('controller/ReactivarUsuarioController.php');
+	require_once('controller/PermisosController.php');
+	require_once('controller/ErrorController.php');
+	require_once('controller/ValidarDatosController.php');
+	require_once('controller/HistoriaClinicaController.php');
+	require_once('controller/GraficosController.php');
+
+	//VIEWS
+	require_once('view/TwigView.php');
+	require_once('view/IndexView.php');
+	require_once('view/UserView.php');
+	require_once('view/LoginView.php');
+	require_once('view/RegistrarUsuarioView.php');
+	require_once('view/RegistrarPacienteView.php');
+	require_once('view/ModificarUsuarioView.php');
+	require_once('view/VerPacienteView.php');
+	require_once('view/PerfilView.php');	
+	require_once('view/ModificarPacienteView.php');
+	require_once('view/ListarUsuarioView.php');
+	require_once('view/ListarPacienteView.php');
+	require_once('view/ConfiguracionAdminView.php');
+	require_once('view/MantenimientoView.php');
+	require_once('view/DatosDemograficosView.php');
+	require_once('view/ErrorView.php');
+	require_once('view/HistoriaClinicaView.php');
+	require_once('view/GraficosView.php');
+
+	//MODELS
+	//require_once('model/.gitIgnore/ConexionDBModel.php'); //local
+	require_once('model/ConexionDBModel.php');   //servidor catedra
+	require_once('model/Usuario.php');
+	require_once('model/LoginModel.php');	
+	require_once('model/RegistrarUsuarioModel.php');
+	require_once('model/RegistrarPacienteModel.php');
+	require_once('model/ListarPacienteModel.php');
+	require_once('model/ListarUsuarioModel.php');
+	require_once('model/VerPacienteModel.php');	
+	require_once('model/PerfilModel.php');		
+	require_once('model/ModificarUsuarioModel.php');
+	require_once('model/ModificarPacienteModel.php');
+	require_once('model/ConfiguracionAdminModel.php');
+	require_once('model/DatosDemograficosModel.php');
+	require_once('model/BorrarUsuarioModel.php');
+	require_once('model/BorrarPacienteModel.php');
+	require_once('model/ReactivarUsuarioModel.php');
+	require_once('model/PermisosModel.php');
+	require_once('model/HistoriaClinicaModel.php');
+	require_once('model/GraficosModel.php');
+?>

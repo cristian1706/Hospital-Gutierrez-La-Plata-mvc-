@@ -1,0 +1,105 @@
+{% if 'administrador' in rol %}
+    {% include 'admin.html' %} 
+{% else %} 
+    {% include 'user.html' %} 
+{% endif %} 
+{% block section %}
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Pacientes</div>
+            <div class="panel-body">
+                    <div class="row">
+                            <div align="right">
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                    <form role="search" action="?action=paciente_busqueda&pag=1" method="POST" class="form-group row">
+                                        <div class="col-sm-4">
+                                        </div>
+                                        <div class="col-sm-8">
+                                        <div class="col-sm-8">
+                                            <input id="busqueda" name="titulo" class="form-control" placeholder="Buscar paciente" required="" type="text">
+                                        </div>
+                                        <div class="col-sm-4" style="text-align:left;">
+                                            <input id="busqueda" class="btn btn-default" value="Buscar" type="submit">
+                                            <a class="btn btn-default" href="?action=paciente_index&pag=1" role="button">Mostrar Todos</a>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Obra Social</th>
+                            <th>Telefono</th>
+                            <th>Configurar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for paciente in pacientes.listaPaginada %}
+                        <tr>
+                            <td>{{ paciente.nombre|title}}</td>
+                            <td>{{ paciente.apellido|title }}</td>
+                            <td>{% if paciente.id_obraSocial == 1 %}IOMA{% endif %}
+                                {% if paciente.id_obraSocial == 2 %}OSDE{% endif %}
+                                {% if paciente.id_obraSocial == 3 %}OSECAC{% endif %}
+                            </td>
+                            <td>{{ paciente.telefono }}</td>
+                            <td colspan="2" style="text-align:center;">
+                                <a class="btn btn-primary" href="?action=paciente_show&idPaciente={{ paciente.id}}" role="button">Ver</a>
+                                <a class="btn btn-primary" href="?action=paciente_update&idPaciente={{ paciente.id}}" role="button">Modificar</a>
+                                <a class="btn btn-danger" data-toggle="confirmation" data-title="¿Dar de baja?" href="?action=paciente_destroy&idPaciente={{ paciente.id}}&pag=1" role="button">Borrar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li>
+                            <a href="?action=paciente_index&pag=1" aria-label="Previous">
+                                <span aria-hidden="true">
+                                    <<</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="?action=paciente_index&pag={{mover.ant}}" aria-label="Previous">
+                                <span aria-hidden="true">
+                                    <</span>
+                            </a>
+                        </li>
+                        {% for count,pag in pacientes.paginas %}
+                        <li {% if mover.actual== count %}class="active" {% endif %}>
+                            <a href="?action=paciente_index&{{pag}}">{{count}}</a>
+                        </li>
+                        {% endfor %}
+                        <li>
+                            <a href="?action=paciente_index&pag={{mover.sig}}" aria-label="Next">
+                                <span aria-hidden="true">></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="?action=paciente_index&pag={{mover.final}}" aria-label="Next">
+                                <span aria-hidden="true">>></span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    {% endblock %} {% block footer %} {% include 'footer.html' %} {% endblock %}
+
+<script type="text/javascript">
+        $('[data-toggle=confirmation]').confirmation({
+            //
+          rootSelector: '[data-toggle=confirmation]',
+          // other options
+        });
+</script>

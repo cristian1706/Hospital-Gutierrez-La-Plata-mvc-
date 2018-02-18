@@ -1,0 +1,32 @@
+
+    {% if 'administrador' in rol %}
+        {% include 'admin.html' %}
+    {% else %}	
+        {% include 'user.html' %}
+    {% endif %}
+{% block section %}
+<div class="container">
+    <br>
+        {% for info in infoIndex %}
+        <div class="col-xs-12 col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{info.titulo}}</h3>
+                </div>
+                <div class="panel-body">
+                    <p align="center">
+                        {{info.descripcion}}
+                        <br>
+                        <br> {{info.mail_contacto}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+       
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

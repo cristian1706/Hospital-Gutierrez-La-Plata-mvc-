@@ -1,0 +1,44 @@
+{% if 'administrador' in rol %} {% include 'admin.html' %} {% else %} {% include 'user.html' %} {% endif %} {% block section
+%}
+<div class="row col-sm-offset-3 col-sm-6">
+<div class="panel-group">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Datos Demograficos del Paciente:{{paciente.nombre|title}} {{paciente.apellido|title}}</div>
+		<div class="panel-body">
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1"> Tiene heladera:</span>
+				{% if datosDemograficos.heladera == 1 %}
+				<input type="text" class="form-control" value="Si" aria-describedby="basic-addon1"> {% else %}
+				<input type="text" class="form-control" value="No" aria-describedby="basic-addon1"> {% endif %}
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1"> Tiene electricidad:</span>
+				{% if datosDemograficos.electricidad == 1 %}
+				<input type="text" class="form-control" value="Si" aria-describedby="basic-addon1"> {% else %}
+				<input type="text" class="form-control" value="No" aria-describedby="basic-addon1"> {% endif %}
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1">Tiene mascota:</span>
+				{% if datosDemograficos.mascota == 1 %}
+				<input type="text" class="form-control" value="Si" aria-describedby="basic-addon1"> {% else %}
+				<input type="text" class="form-control" value="No" aria-describedby="basic-addon1"> {% endif %}
+			</div>
+
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1"> Tipo de Vivienda: </span>
+				<input type="text" class="form-control" value="{{vivienda.nombre}}" aria-describedby="basic-addon1">
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1"> Tipo de Calefaccion: </span>
+				<input type="text" class="form-control" value="{{calefaccion.nombre}}" aria-describedby="basic-addon1">
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon" id="basic-addon1"> Tipo de Agua: </span>
+				<input type="text" class="form-control" value="{{agua.nombre}}" aria-describedby="basic-addon1">
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+{% endblock %} {% block footer %} {% include 'footer.html' %} {% endblock %}

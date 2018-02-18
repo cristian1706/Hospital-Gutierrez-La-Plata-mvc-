@@ -1,0 +1,13 @@
+{% if 'administrador' in rol %}
+    {% include 'admin.html' %}
+{% else %}	
+    {% include 'user.html' %}
+{% endif %}
+{% block section %}
+	<!--<img src="./imagenes/en_construccion.gif">-->
+	<img src="./imagenes/pagina-en-mantenimiento.jpg" alt="imagen de mantenimiento">
+{% endblock %}
+
+{% block footer %}
+	{% include 'footer.html' %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% if 'administrador' in rol %}
+    {% include 'admin.html' %} 
+{% else %}
+	{% if 'pediatra' in rol %}
+    	{% include 'user.html' %} 
+    {% else %}
+        {% if 'recepcionista' in rol %}
+    	   {% include 'user.html' %}    
+        {% endif %}
+    {% if '' in rol %}
+    	{% include 'index.html' %}    
+    {% endif %}
+{% endif %}
+{% endif %} 
+{% block section %}
+    <div class="alert alert-danger" style="text-align: center;">{{mensajeError}}</div>
+{% endblock %} {% block footer %} {% include 'footer.html' %} {% endblock %}

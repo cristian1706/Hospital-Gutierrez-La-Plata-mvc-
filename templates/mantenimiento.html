@@ -1,0 +1,24 @@
+{% extends "layout.html" %} 
+{% block navbarLeft %}
+<li>
+	<a href="?action=">Inicio</a>
+</li>
+<li>
+	<a href="?action=">Hospital Dr. Ricardo Guitiérrez</a>
+</li>
+{% endblock %} 
+{% block navbarRight %}
+<li>
+	<a href="?action=login"><span id="glyph" class="glyphicon glyphicon-log-in"></span> Login</a>
+</li>
+{% endblock %} 
+
+{% block section %}
+	<!--<img src="./imagenes/en_construccion.gif">-->
+	<img src="./imagenes/pagina-en-mantenimiento.jpg" alt="imagen de mantenimiento">
+{% endblock %}
+
+{% block footer %}
+	{% include 'footer.html' %}
+{% endblock %}
+

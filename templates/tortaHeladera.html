@@ -1,0 +1,59 @@
+{% if 'administrador' in rol %}
+    {% include 'admin.html' %} 
+{% else %} 
+    {% include 'user.html' %} 
+{% endif %} 
+
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+{% endblock %}
+
+        
+{% block section %}
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+
+
+        <script type="text/javascript">
+
+// Build the chart
+Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Estadistica de los pacientes con o sin heladera'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
+        }
+    },
+    series: [{
+        name: 'Porcentajes',
+        colorByPoint: true,
+        data: [{
+            name: 'Tienen heladera en sus casas',
+            y: {{tienenHeladera}}
+        }, {
+            name: 'No poseen heladera en sus casas',
+            color: "#ff6666",
+            y: {{noTienenHeladera}}
+        }]
+    }]
+});
+        </script>
+{% endblock %}{% block footer %} {% include 'footer.html' %} {% endblock %}

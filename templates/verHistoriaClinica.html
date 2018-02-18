@@ -1,0 +1,75 @@
+{% if 'administrador' in rol %} {% include 'admin.html' %} {% else %} {% include 'user.html' %} {% endif %} {% block section
+%}
+<div class="row col-sm-offset-3 col-sm-6">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Consulta médica del paciente: {{paciente.nombre |title}} {{paciente.apellido |title}}</div>
+            <div class="panel-body">
+                <table class="table">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Fecha consulta:</span>
+                        <input type="text" class="form-control" value="{{historia_clinica.fecha}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Edad:</span>
+                        <input type="text" class="form-control" value="{{edad}} años" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Peso:</span>
+                        <input type="text" class="form-control" value="{{historia_clinica.peso}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Vacunas completas:</span>
+                        <input type="text" class="form-control" {% if historia_clinica.vacunas_completas == 1 %} value="Si" {% else %} value="No" {% endif %} aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Vacunas observaciones:</span>
+                        <input type="text" class="form-control" value="{{historia_clinica.vacunas_observaciones}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Maduración acorde:</span>
+                        <input type="text" class="form-control" {% if historia_clinica.maduracion_acorde == 1 %} value="Si" {% else %} value="No" {% endif %} aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Maduración observaciones:</span>
+                        <input type="text" class="form-control" value="{{historia_clinica.ex_fisico_observaciones}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Examen físico normal:</span>
+                        <input type="text" class="form-control" {% if historia_clinica.ex_fisico_normal == 1 %} value="Si" {% else %} value="No" {% endif %} aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Examen físico observaciones:</span>
+                        <input type="text" class="form-control" value="{{historia_clinica.ex_fisico_observaciones}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Percentilo Cefálico:</span>
+                        <input type="text" class="form-control" value="{{historia_clinica.pc}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Percentilo Perímetro Cefálico:</span>
+                        <input type="text" class="form-control" value="{{historia_clinica.ppc}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                     <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Talla:</span>
+                        <input type="text" class="form-control" value="{{historia_clinica.talla}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                     <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Alimentación:</span>
+                        <input type="text" class="form-control" value="{{historia_clinica.alimentacion}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                     <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Observaciones generales:</span>
+                        <input type="text" class="form-control" value="{{historia_clinica.observaciones_generales}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    
+                    </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} {% block footer %} {% include 'footer.html' %} {% endblock %}

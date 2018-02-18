@@ -1,0 +1,120 @@
+{% if 'administrador' in rol %}
+	{% include 'admin.html' %} 
+{% else %} 
+	{% include 'user.html' %} 
+{% endif %} 
+{% block section %}
+<div class="panel-group">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			Registrar Historia Clinica para {{paciente.nombre | title}} {{paciente.apellido | title}}
+		</div>
+		<div class="panel-body">
+			<form class="form-horizontal" action="?action=historiaClinica_new" method="POST">
+
+				{% if mensajeError == "No se puede registrar si deja campos vacíos" %}
+				<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+				{% endif %}
+				{% if mensajeError == "Por favor no elimine campos del formulario" %}
+				<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+				{% endif %}
+				<!--<div class="form-group ">
+					<label for="inputEmail3" class="control-label col-sm-2  col-xs-offset-1">Fecha Consulta:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input type="date" name="fechaConsulta" class="form-control" id="inputEmail3" placeholder="Fecha de la consulta" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="control-label col-sm-2  col-xs-offset-1">Edad:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input type="number" name="edad" class="form-control" id="inputText3" placeholder="Edad">
+					</div>
+				</div>-->
+				<div class="form-group">
+					<label for="inputPassword3" class="control-label col-sm-2  col-xs-offset-1">Peso:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input type="number" name="peso" class="form-control" id="inputPassword3" placeholder="Peso" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2 col-xs-offset-1">Vacunas completas:</label>
+					<div class="col-sm-1 col-xs-12">
+						<input name="vacunas_completas" type="radio" value="1" required>Si
+						<input name="vacunas_completas" type="radio" value="0" required>No
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Vacunas observaciones:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input name="vacunas_observaciones" type="text" placeholder="Observaciones de vacunas" class="form-control input-md">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Maduracion acorde:</label>
+					<div class="col-sm-1 col-xs-12">
+						<input name="maduracion_acorde" type="radio" value="1" required>Si
+						<input name="maduracion_acorde" type="radio" value="0" required>No
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Maduración observaciones:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input name="maduracion_observaciones" type="text" placeholder="Observaciones de maduración" class="form-control input-md">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Examen físico normal:</label>
+					<div class="col-sm-1 col-xs-12">
+						<input name="ex_fisico_normal" type="radio" value="1" required>Si
+						<input name="ex_fisico_normal" type="radio" value="0" required>No
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="control-label col-sm-2  col-xs-offset-1">Examen físico observaciones:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input type="text" name="ex_fisico_observaciones" class="form-control" id="inputPassword3" placeholder="Observaciones del examen físico" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Percentilo Cefálico:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input name="pc" type="number" placeholder="Percentilo Cefálico" class="form-control input-md">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Percentilo Perímetro Cefálico:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input name="ppc" type="number" placeholder="Percentilo Perímetro Cefálico" class="form-control input-md">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Talla:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input name="talla" type="number" placeholder="Talla" class="form-control input-md">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Alimentación:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input name="alimentacion" type="text" placeholder="Alimentación" class="form-control input-md">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2  col-xs-offset-1" for="Nombre">Observaciones generales:</label>
+					<div class="col-sm-8 col-xs-12">
+						<input name="observaciones_generales" type="text" placeholder="Observaciones Generales" class="form-control input-md">
+					</div>
+				<br><br>
+				</div>
+				<input type="hidden" name="idPaciente" value="{{idPaciente}}">
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-xs-6">
+						<button type="submit" class="btn btn-default">Añadir</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %} {% block footer %} {% include 'footer.html' %} {% endblock %}

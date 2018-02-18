@@ -1,0 +1,120 @@
+{% if 'administrador' in rol %}
+    {% include 'admin.html' %} 
+{% else %} 
+    {% include 'user.html' %} 
+{% endif %} 
+{% block section %}
+<div class="panel-group">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Usuarios</div>
+        <div class="panel-body">
+        <div class="row">
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <form role="search" action="?action=usuario_busqueda&pag=1" method="POST" class="form-group row">
+                            <div class="col-sm-4">
+                                <div class="col-sm-5">
+                                    <select class="form-control" name="estado">
+                                        <option value="1"{% if lista.estado==1 %}selected{% endif %}>Activos</option>
+                                        <option value="0"{% if lista.estado==0 %}selected{% endif %}>Bloqueados</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                            <div class="col-sm-8">
+                                <input id="busqueda" name="titulo" class="form-control" placeholder="Buscar usuario" type="text">
+                            </div>
+                            <div class="col-sm-4" style="text-align:left;">
+                                <input id="busqueda" class="btn btn-default" value="Buscar" type="submit">
+                                <a class="btn btn-default" href="?action=usuario_index&pag=1" role="button">Mostrar Todos</a>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Usuario</th>
+                        <th>Email</th>
+                        <th>Roles</th>
+                        <th>Configurar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% set i=0 %}
+                        
+                    {% for usuario in usuarios.listaPaginada %}
+                    <tr>
+                        <td>{{ usuario.first_name |title}}</td>
+                        <td>{{ usuario.last_name |title}}</td>
+                        <td>{{ usuario.username}}</td>
+                        <td>{{ usuario.email}}</td>
+                        <td>     {% for key, rol in roles%}
+                                {% if key == usuario.id %}
+                                     {% for key, ro in rol%} 
+                                        {{ro|title}}<br>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            {%set i=i+1%}
+                        <td colspan="2">
+                            <a class="btn btn-primary" href="?action=usuario_update&idUsuario={{usuario.id}}" role="button">Modificar</a>
+                            {% if usuario.activo == 1 %}
+                            <a class="btn btn-large btn-danger" data-toggle="confirmation" data-title="¿Dar de baja?" href="?action=usuario_destroy&idUsuario={{usuario.id}}&pag=1" >Bloquear</a>
+                            {% else %}
+                            <a class="btn btn-success" data-toggle="confirmation" data-title="¿Dar de alta?" href="?action=usuario_reload&idUsuario={{usuario.id}}&pag=1">Reactivar</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li>
+                        <a href="?action=usuario_busqueda&pag=1" aria-label="Previous">
+                            <span aria-hidden="true">
+                                <<</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?action=usuario_busqueda&pag={{mover.ant}}" aria-label="Previous">
+                            <span aria-hidden="true">
+                                <</span>
+                        </a>
+                    </li>
+                    {% for count,pag in usuarios.paginas %}
+                    <li {% if mover.actual== count %}class="active" {% endif %}>
+                        <a href="?action=usuario_busqueda&{{pag}}">{{count}}</a>
+                    </li>
+                    {% endfor %}
+                    <li>
+                        <a href="?action=usuario_busqueda&pag={{mover.sig}}" aria-label="Next">
+                            <span aria-hidden="true">></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?action=usuario_busqueda&pag={{mover.final}}" aria-label="Next">
+                            <span aria-hidden="true">>></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block footer %} {% include 'footer.html' %} {% endblock %}
+<script type="text/javascript">
+        $('[data-toggle=confirmation]').confirmation({
+            //
+          rootSelector: '[data-toggle=confirmation]',
+          // other options
+        });
+</script>

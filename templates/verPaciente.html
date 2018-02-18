@@ -1,0 +1,56 @@
+{% if 'administrador' in rol %} {% include 'admin.html' %} {% else %} {% include 'user.html' %} {% endif %} {% block section
+%}
+<div class="row col-sm-offset-3 col-sm-6">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Datos Personales del Paciente: {{paciente.nombre |title}} {{paciente.apellido |title}}</div>
+            <div class="panel-body">
+                <table class="table">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Nombre:</span>
+                        <input type="text" class="form-control" value="{{paciente.nombre |title}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Apellido:</span>
+                        <input type="text" class="form-control" value="{{paciente.apellido|title}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Fecha de Nacimiento:</span>
+                        <input type="text" class="form-control" value="{{paciente.fechaDeNacimiento}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Tipo de Documento:</span>
+                        <input type="text" class="form-control" value="{{documento.nombre}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Nro Documento:</span>
+                        <input type="text" class="form-control" value="{{paciente.numeroDocumento}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Genero:</span>
+                        <input type="text" class="form-control" value="{{paciente.genero |title}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Domicilio:</span>
+                        <input type="text" class="form-control" value="{{paciente.domicilio}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Telefono:</span>
+                        <input type="text" class="form-control" value="{{paciente.telefono}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"> Obra Social:</span>
+                        <input type="text" class="form-control" value="{{obraSocial.nombre}}" aria-describedby="basic-addon1" readonly>
+                    </div>
+                    <br>
+                    <a class="btn btn-primary" href="?action=datosDem_show&idPaciente={{paciente.id}}" role="button">Ver Datos Demográficos</a>
+                    </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} {% block footer %} {% include 'footer.html' %} {% endblock %}

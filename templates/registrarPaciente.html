@@ -1,0 +1,154 @@
+{% if 'administrador' in rol %}
+{% include 'admin.html' %} 
+{% else %} 
+{% include 'user.html' %} 
+{% endif %} 
+{% block section %}
+<div class="col-xs-10 col-sm-offset-1">
+	<div class="panel-group">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Agregar Paciente
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal" action="?action=paciente_new" method="POST">
+					{% if mensajeError == "El DNI ya esta en uso, pruebe con otro" %}
+					<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+					{% endif %}
+					{% if mensajeError == "No se puede registrar el paciente si deja campos vacíos" %}
+					<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+					{% endif %}
+					{% if mensajeError == "Por favor no elimine campos del formulario" %}
+					<div class="alert alert-danger" align="center">{{mensajeError}}</div>
+					{% endif %}
+					<div class="form-group">
+						<label class="control-label col-sm-2 col-xs-offset-1" for="Nombre">Nombre:</label>
+						<div class="col-sm-8 col-xs-12">
+							<input id="Nombre" name="nombre" type="text" placeholder="Nombre" class="form-control input-md" required="required">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2 col-xs-offset-1" for="Nombre">Apellido:</label>
+						<div class="col-sm-8 col-xs-12">
+							<input id="Apellido" name="apellido" type="text" placeholder="Apellido" class="form-control input-md" required="required">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Fecha de Nacimiento:</label>
+						<div class="col-sm-8 col-xs-12">	
+							<input type="date" name="fechaDeNacimiento" class="form-control" id="inputText3" value="" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Genero:</label>
+						<div class="col-sm-2 col-xs-12">
+							<input type="radio" name="genero" value="masculino" id="inputText3" checked> Masculino
+							<br>
+							<input type="radio" name="genero" value="femenino"> Femenino
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Domicilio:</label>
+						<div class="col-sm-8 col-xs-12">
+							<input type="text" name="domicilio" class="form-control" id="inputText3" placeholder="Domicilio Actual" required="required">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Tipo Documento:</label>
+						<div class="col-sm-2 col-xs-12">
+							{% for doc in documentos %}
+							<input type="radio" name="tipoDocumento" value="{{doc.id}}" required>{{doc.nombre}}
+							{% endfor %}
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Número de Documento:</label>
+						<div class="col-sm-8 col-xs-12">
+							<input type="number" name="numeroDocumento" class="form-control" id="inputText3" placeholder="Número de Documento" required="required">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Teléfono:</label>
+						<div class="col-sm-8 col-xs-12">
+							<input type="number" name="telefono" class="form-control" id="inputText3" placeholder="Numero de telefono" required="required">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="control-label col-sm-2 col-xs-offset-1">Obra Social:</label>
+						<div class="col-sm-8 col-xs-12">
+							<select class="form-control" id="sel3" name="obraSocial" required>
+								{% for obraSoc in obrasSociales %}
+								<option value="{{obraSoc.id}}">{{obraSoc.nombre}}</option> 
+								{% endfor %} 
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-12">
+						<br><br>
+						<h4><strong>Datos Demográficos</strong></h4>
+						<br>    
+					</div>
+					<div class="form-group">
+						<label for="hel" class="control-label col-sm-2 col-xs-offset-1">Heladera:</label>
+						<div class="col-sm-2 col-xs-12">
+							<input type="radio" name="heladera" value="1" id="hel" required="required"> si
+							<input type="radio" name="heladera" value="0" id="hel" required="required"> no
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="elec" class="control-label col-sm-2 col-xs-offset-1">Electricidad:</label>
+						<div class="col-sm-2 col-xs-12">
+							<input type="radio" name="electricidad" value="1" id="elec" required="required"> si
+							<input type="radio" name="electricidad" value="0" id="elec" required="required"> no
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="masc" class="control-label col-sm-2 col-xs-offset-1">Mascotas:</label>
+						<div class="col-sm-2 col-xs-12">
+							<input type="radio" name="mascota" value="1" id="masc" required="required"> si
+							<input type="radio" name="mascota" value="0" id="masc" required="required"> no
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2  col-xs-offset-1" for="sel1">Tipo de Calefaccion:</label>
+						<div class="col-sm-8 col-xs-12">
+							<select class="form-control" id="sel1" name="calefaccion" required>
+								{% for i in calefacciones %}
+								<option  value="{{i.id}}"> {{i.nombre}}</option>
+								{% endfor %}                         
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2  col-xs-offset-1" for="sel2">Tipo de Vivienda:</label>
+						<div class="col-sm-8 col-xs-12">
+							<select class="form-control" id="sel2" name="vivienda" required>
+								{% for i in viviendas %}
+								<option  value="{{i.id}}"> {{i.nombre}}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2  col-xs-offset-1" for="sel3">Tipo de agua:</label>
+						<div class="col-sm-8 col-xs-12">
+							<select class="form-control" id="sel3" name="agua" required>
+								{% for i in aguas %}
+								<option  value="{{i.id}}"> {{i.nombre}}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					<br>
+					<div class="form-group">
+						<div class="col-sm-offset-3 col-xs-6">
+							<button type="submit" class="btn btn-default">Agregar</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %} {% block footer %} {% include 'footer.html' %} {% endblock %}

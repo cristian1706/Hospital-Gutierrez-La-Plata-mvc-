@@ -1,0 +1,78 @@
+{% if 'administrador' in rol %} {% include 'admin.html' %} {% else %} {% include 'user.html' %} {% endif %} {% block section
+%}
+<div class="panel-group">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Consultas médica del paciente: {{paciente.nombre}} {{paciente.apellido}}</div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Fecha consulta</th>
+                            <th>Configurar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for hc in lista.listaPaginada %}
+                        <tr>
+                            <td>{{ hc.fecha }}</td>
+                            <td colspan="2" style="text-align:center;">
+                                <a class="btn btn-primary" href="?action=historiaClinica_show&idHistoriaClinica={{ hc.id}}" role="button">Ver</a>
+                                <a class="btn btn-primary" href="?action=historiaClinica_update&idHistoriaClinica={{ hc.id }}" role="button">Modificar</a>
+                                <a class="btn btn-danger" data-toggle="confirmation" data-title="¿Dar de baja?" href="?action=historiaClinica_destroy&idHistoriaClinica={{hc.id}}&idPaciente={{paciente.id}}"
+                                    role="button">Borrar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <a class="btn btn-primary" href="?action=historiaClinica_new&idPaciente={{idPaciente}}" role="button">Agregar consulta médica</a><br><br>
+                    <div class="btn-group">
+                        <a class="btn btn-primary" href="?action=graficoPeso_show&idPaciente={{idPaciente}}" role="button">Evaluacion del Peso</a>
+                        <a class="btn btn-primary" href="?action=graficoTalla_show&idPaciente={{idPaciente}}" role="button">Evaluacion de la Talla</a>
+                        <a class="btn btn-primary" href="?action=graficoPC_show&idPaciente={{idPaciente}}" role="button">Evaluacion de su PC</a>
+                    </div>
+                </table>
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li>
+                        <a href="?action=historiaClinica_index&idPaciente={{ paciente.id}}&pag=1" aria-label="Previous">
+                            <span aria-hidden="true">
+                                <<</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?action=historiaClinica_index&idPaciente={{ paciente.id}}&pag={{mover.ant}}" aria-label="Previous">
+                            <span aria-hidden="true">
+                                <</span>
+                        </a>
+                    </li>
+                    {% for count,pag in lista.paginas %}
+                    <li {% if mover.actual == count %}class="active" {% endif %}>
+                        <a href="?action=historiaClinica_index&idPaciente={{ paciente.id}}&{{pag}}">{{count}}</a>
+                    </li>
+                    {% endfor %}
+                    <li>
+                        <a href="?action=historiaClinica_index&idPaciente={{ paciente.id}}&pag={{mover.sig}}" aria-label="Next">
+                            <span aria-hidden="true">></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?action=historiaClinica_index&idPaciente={{ paciente.id}}&pag={{mover.final}}" aria-label="Next">
+                            <span aria-hidden="true">>></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block footer %} {% include 'footer.html' %} {% endblock %}
+
+<script type="text/javascript">
+    $('[data-toggle=confirmation]').confirmation({
+        //
+        rootSelector: '[data-toggle=confirmation]',
+        // other options
+    });
+</script>

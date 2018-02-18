@@ -1,0 +1,35 @@
+{% extends "layout.html" %} {% block navbarLeft %}
+<li>
+	<a href="?action=">Inicio</a>
+</li>
+<li>
+	<a href="?action=">Hospital Dr. Ricardo Guitiérrez</a>
+</li>
+{% endblock %} {% block navbarRight %}
+<li>
+	<a href="?action=login"><span id="glyph" class="glyphicon glyphicon-log-in"></span> Login</a>
+</li>
+{% endblock %} {% block section %}
+<div class="row">
+	{% for info in infoIndex %}
+	<div class="col-xs-12 col-sm-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title">{{info.titulo}}</h3>
+			</div>
+			<div class="panel-body">
+				<p align="center">
+					{{info.descripcion}}
+					<br>
+					<br> {{info.mail_contacto}}
+				</p>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %}
+	{% include 'footer.html' %}
+{% endblock %}

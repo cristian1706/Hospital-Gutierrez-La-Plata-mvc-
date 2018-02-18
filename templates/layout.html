@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<script src="bootstrap/jQuery/jquery-3.2.1.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="bootstrap/js/bootstrap-confirmation.min.js"></script>
+	{% block scripts %}{% endblock %}
+	<title>Hospital Gutiérrez</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="?action=">
+					<img alt="logo del hospital" class="logo" src="imagenes/logo_hospital.png">
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					{% block navbarLeft %}{% endblock %}
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					{% block navbarRight %}{% endblock %}
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		{% block section %}{% endblock %}
+	</div>
+	<footer>
+		{% block footer %}{% endblock %}
+	</footer>
+</body>
+
+</html>
