@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-11-2017 a las 20:23:25
+-- Tiempo de generación: 18-02-2018 a las 19:36:59
 -- Versión del servidor: 10.0.32-MariaDB-0+deb8u1
 -- Versión de PHP: 5.6.30-0+deb8u1
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `configuracion_general` (
 --
 
 INSERT INTO `configuracion_general` (`id`, `cant_elementos_pagina`, `sitio_habilitado`) VALUES
-(1, 11, 1);
+(1, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -129,21 +129,27 @@ CREATE TABLE IF NOT EXISTS `historia_clinica` (
   `activo` tinyint(1) NOT NULL,
   `id_paciente` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `historia_clinica`
 --
 
 INSERT INTO `historia_clinica` (`id`, `fecha`, `peso`, `vacunas_completas`, `vacunas_observaciones`, `maduracion_acorde`, `maduracion_observaciones`, `ex_fisico_normal`, `ex_fisico_observaciones`, `pc`, `ppc`, `talla`, `alimentacion`, `observaciones_generales`, `activo`, `id_paciente`, `id_usuario`) VALUES
-(29, '2017-11-11 21:40:43', 50, 0, 'fgbgfbfggb', 1, '', 0, 'fdsf', 24, 52, 161, 'emi come la comida de iron manija', 'SDdgfsgffdgdgdffggdfgfdgdfg', 1, 1, 3),
-(30, '2017-11-11 23:14:41', 53, 1, 'bfgbfgb', 1, '', 1, 'dfg', 35, 55, 165, 'bdddfg', 'dfg', 1, 1, 3),
-(31, '2017-11-11 23:18:16', 60, 1, 'bfgbfgb', 1, '', 0, 'sdfsfd', 42, 58, 166, 'sdfsdf', 'fsdfsdfdssdfsdfsdfdsfsfdsdfdsf', 1, 1, 3),
-(32, '2017-11-14 03:15:25', 80, 1, 'fsdfsdf', 1, 'sdfs', 1, 'sdfsdf', 23423, 86, 180, 'sdfsdf', 'sdfdsffd', 1, 2, 2),
-(33, '2017-11-14 03:24:35', 45, 1, 'dsfdsf', 1, 'sdfsf', 1, 'sdff', 234234, 51, 150, 'guille come guilletitas', 'sfsdf', 1, 3, 2),
-(34, '2017-11-14 03:25:17', 39, 1, 'fsdfsdf', 1, 'sfsdfs', 1, 'sdfsdf', 24234, 49, 153, 'guille come gordas', 'fsdfsdf', 1, 3, 2),
-(35, '2017-11-14 03:37:34', 82, 0, 'sdfsdf', 0, 'sdfsdf', 1, 'dsfsdf', 4234, 79, 182, 'fssdfs', 'sdfdsf', 1, 2, 2),
-(36, '2017-11-14 04:15:17', 78, 1, 'fff', 1, 'fsdf', 0, 'dsff', 324, 75, 184, 'ff', 'dfg', 1, 2, 2);
+(29, '2017-09-08 21:40:43', 5, 0, 'Vacunacion semicompleta', 1, '', 0, 'Normal', 24, 52, 61, 'Como queres que coma si no tiene dientes', 'Tiene aspectos flasheros', 0, 1, 3),
+(30, '2017-09-15 23:14:41', 5, 1, 'Le faltan un par', 1, '', 1, 'Mucho deporte', 35, 55, 65, 'bdddfg', 'Es muy quejoso', 0, 1, 3),
+(31, '2017-09-27 23:18:16', 6, 1, 'Ya no se que mas poner', 1, '', 0, 'Lee mucho', 42, 58, 66, 'sdfsdf', 'No para de gritar por cualquier cosa', 1, 1, 3),
+(32, '2017-11-14 03:15:25', 8, 1, 'Vacunas completas', 1, 'sdfs', 1, 'Le gusta charlar', 23423, 86, 80, 'sdfsdf', 'Habla a los gritos', 1, 2, 2),
+(33, '2017-11-07 03:24:35', 4, 1, 'Vacunas completas', 1, 'sdfsf', 1, 'Le gusta comer chocolates', 234234, 51, 50, 'guille come guilletitas', 'Creo que le tiene miedo al estetoscopio', 1, 3, 2),
+(34, '2017-11-14 03:25:17', 3, 1, 'Vacunas con faltas', 1, 'sfsdfs', 1, 'Es de juntarse con amigos', 24234, 49, 53, 'guille come gordas', 'Le gusta decir AHHH para los examenes', 1, 3, 2),
+(35, '2017-11-05 03:37:34', 8, 0, 'No tiene vacunas', 0, 'sdfsdf', 1, 'Juega mucho al ludo', 4234, 79, 82, 'fssdfs', 'Demasiado timido', 1, 2, 2),
+(36, '2017-11-04 04:15:17', 7, 1, 'No quiere', 1, 'fsdf', 0, 'Experto en damas chinas', 324, 75, 84, 'ff', 'Un maleducado', 1, 2, 2),
+(37, '2017-10-01 21:29:29', 4, 1, 'Tiene casi todas en lo que va el dia', 1, 'Mas o menos', 1, 'Tiene todo controlado por ahora', 5, 6, 30, 'Come bien aunque no come seguido', 'Entra al consultorio sin saludar', 1, 1, 3),
+(38, '2017-11-19 22:24:25', 4, 1, 'Todo piola', 1, 'Mas o menos', 1, 'Ponele', 30, 30, 30, 'Mucho Mc', 'Todo bien', 0, 1, 3),
+(39, '2017-11-01 01:52:10', 7, 1, 'Vacunado', 1, 'Ponele', 1, 'Supuestamente', 30, 29, 20, 'Sana', 'Come muchas frutas', 1, 2, 3),
+(40, '2017-10-18 02:43:32', 7, 1, 'Completas', 1, 'En buen proceso', 1, 'Todo normal', 20, 50, 30, 'Buena', 'Faltan verduras', 1, 1, 3),
+(41, '2017-10-15 02:46:19', 3, 1, 'Compeltas', 0, 'Ahora no tanto', 1, 'Todo normal', 50, 35, 40, 'Come bien', 'Faltan frutas', 1, 1, 3),
+(42, '2017-11-25 20:47:57', 6, 1, '...', 1, '.', 1, '.', 3, 5, 2, '.', '.', 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -170,9 +176,9 @@ CREATE TABLE IF NOT EXISTS `paciente` (
 --
 
 INSERT INTO `paciente` (`id`, `apellido`, `nombre`, `fechaDeNacimiento`, `genero`, `id_documento`, `numeroDocumento`, `domicilio`, `telefono`, `id_obraSocial`, `activo`) VALUES
-(1, 'Martinez', 'Maria Emilia', '1995-07-15', 'femenino', '4', 38916388, '518 e/ 207 y 208', '2216220977', '3', 1),
-(2, 'Barreto', 'Cristian', '1994-06-17', 'masculino', '2', 38369763, '46', '323455', '2', 1),
-(3, 'Ramirez', 'guillermo', '1993-05-22', 'masculino', '3', 37394444, '54', '3213255', '3', 1),
+(1, 'Martinez', 'Maria Emilia', '2017-09-01', 'femenino', '4', 38916388, '518 e/ 207 y 208', '2216220977', '3', 1),
+(2, 'Barreto', 'Cristian', '2017-06-17', 'masculino', '2', 38369763, '46', '323455', '2', 1),
+(3, 'Ramirez', 'guillermo', '2016-05-22', 'masculino', '3', 37394444, '54', '3213255', '3', 1),
 (9, 'Manija', 'Iron', '2017-10-13', 'masculino', '4', 123131, 'Calle copada', '23143', '1', 1),
 (10, 'Beni', 'Norma', '2017-10-13', 'femenino', '1', 3552000, '234234', '412434', '1', 1),
 (11, 'jaja', 'sarasa', '2017-10-02', 'masculino', '2', 144314, 'wdq41', '1223', '3', 1),
@@ -202,7 +208,7 @@ INSERT INTO `paciente` (`id`, `apellido`, `nombre`, `fechaDeNacimiento`, `genero
 CREATE TABLE IF NOT EXISTS `permiso` (
 `id` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `permiso`
@@ -230,7 +236,16 @@ INSERT INTO `permiso` (`id`, `nombre`) VALUES
 (19, 'historiaClinica_new'),
 (20, 'historiaClinica_update'),
 (21, 'historiaClinica_index'),
-(22, 'historiaClinica_destroy');
+(22, 'historiaClinica_destroy'),
+(23, 'graficoPeso_show'),
+(24, 'graficoTalla_show'),
+(25, 'graficoPC_show'),
+(26, 'graficoHeladera_show'),
+(27, 'graficoElectricidad_show'),
+(28, 'graficoMascota_show'),
+(29, 'graficoAgua_show'),
+(30, 'graficoVivienda_show'),
+(31, 'graficoCalefaccion_show');
 
 -- --------------------------------------------------------
 
@@ -262,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `rol_permiso` (
 `id` int(11) NOT NULL,
   `id_rol` int(11) NOT NULL,
   `id_permiso` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `rol_permiso`
@@ -291,6 +306,15 @@ INSERT INTO `rol_permiso` (`id`, `id_rol`, `id_permiso`) VALUES
 (54, 1, 20),
 (55, 1, 21),
 (58, 1, 22),
+(59, 1, 23),
+(60, 1, 24),
+(61, 1, 25),
+(62, 1, 26),
+(63, 1, 27),
+(64, 1, 28),
+(65, 1, 29),
+(66, 1, 30),
+(67, 1, 31),
 (32, 2, 1),
 (33, 2, 2),
 (34, 2, 4),
@@ -303,6 +327,15 @@ INSERT INTO `rol_permiso` (`id`, `id_rol`, `id_permiso`) VALUES
 (52, 2, 19),
 (56, 2, 20),
 (57, 2, 21),
+(68, 2, 23),
+(69, 2, 24),
+(70, 2, 25),
+(71, 2, 26),
+(72, 2, 27),
+(73, 2, 28),
+(74, 2, 29),
+(75, 2, 30),
+(76, 2, 31),
 (38, 3, 1),
 (39, 3, 2),
 (40, 3, 4),
@@ -322,7 +355,7 @@ CREATE TABLE IF NOT EXISTS `turno` (
 `id` int(11) NOT NULL,
   `dni` int(11) NOT NULL,
   `fecha` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `turno`
@@ -330,7 +363,10 @@ CREATE TABLE IF NOT EXISTS `turno` (
 
 INSERT INTO `turno` (`id`, `dni`, `fecha`) VALUES
 (6, 38916388, '2017-11-18 08:00:00'),
-(7, 38916388, '2017-11-18 08:30:00');
+(7, 38916388, '2017-11-18 08:30:00'),
+(8, 37394444, '2017-11-20 08:00:00'),
+(9, 38369763, '2017-11-27 11:00:00'),
+(10, 38916388, '2099-01-01 09:00:00');
 
 -- --------------------------------------------------------
 
@@ -348,7 +384,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `created_at` datetime NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -369,7 +405,9 @@ INSERT INTO `usuario` (`id`, `email`, `username`, `password`, `activo`, `updated
 (14, 'b@b.com', 'cccddd', 'b', 0, '2017-11-06 21:18:56', '2017-11-06 21:11:06', 'b', 'b'),
 (15, 'c@c.com', 'DD', 'c', 0, '2017-11-06 21:14:53', '2017-11-06 21:13:26', 'c', 'c'),
 (16, 'gg@dd', 'dfsf', 'sdff', 1, '2017-11-08 15:04:45', '2017-11-08 15:04:45', 'sdfsd', 'sdf'),
-(17, 'z@z', 'Holaa', '123', 1, '2017-11-08 15:09:26', '2017-11-08 15:09:26', 'dfdf', 'sdfs');
+(17, 'z@z', 'Holaa', '123', 1, '2017-11-08 15:09:26', '2017-11-08 15:09:26', 'dfdf', 'sdfs'),
+(18, 'zorro@incognito.com', 'Zorrooo', 'asdfasdf', 1, '2017-11-19 22:20:16', '2017-11-19 22:20:16', 'Gabriel', 'Capo'),
+(19, 'camello@rollo.com', 'pedro', 'pica', 1, '2017-11-19 22:22:09', '2017-11-19 22:22:09', 'pica', 'pica');
 
 -- --------------------------------------------------------
 
@@ -381,7 +419,7 @@ CREATE TABLE IF NOT EXISTS `usuario_rol` (
 `id` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `id_rol` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuario_rol`
@@ -411,7 +449,9 @@ INSERT INTO `usuario_rol` (`id`, `id_usuario`, `id_rol`) VALUES
 (98, 15, 2),
 (111, 16, 2),
 (112, 17, 3),
-(113, 18, 2);
+(113, 18, 2),
+(114, 18, 3),
+(115, 19, 3);
 
 --
 -- Índices para tablas volcadas
@@ -506,7 +546,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 -- AUTO_INCREMENT de la tabla `historia_clinica`
 --
 ALTER TABLE `historia_clinica`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT de la tabla `paciente`
 --
@@ -516,7 +556,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
@@ -526,22 +566,22 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT de la tabla `rol_permiso`
 --
 ALTER TABLE `rol_permiso`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=77;
 --
 -- AUTO_INCREMENT de la tabla `turno`
 --
 ALTER TABLE `turno`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT de la tabla `usuario_rol`
 --
 ALTER TABLE `usuario_rol`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=114;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=116;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
